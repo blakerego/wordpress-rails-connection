@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
     "VERSION",
     "init.rb",
     "lib/wordpress-rails-connection.rb",
-    "wordpress-rails-connection-0.1.0.gem",
     "wordpress-rails-connection.gemspec"
   ]
   s.homepage = "http://github.com/blakerego/wordpress-rails-connection".freeze
