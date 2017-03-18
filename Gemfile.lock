@@ -55,8 +55,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  faraday
   jeweler (~> 2.0, >= 2.0.1)
+
+RUBY VERSION
+   ruby 2.2.2p95
 
 BUNDLED WITH
    1.13.6

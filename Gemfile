@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'faraday'
+ruby '2.2.2'
 
 group :development, :test do
   gem 'jeweler', '~> 2.0', '>= 2.0.1'
