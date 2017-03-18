@@ -8,7 +8,7 @@ module WordpressRailsConnection
 
   def self.initialize(path = "", expires_in=6.hours)
     Rails.cache.fetch("#{path}", :expires_in => expires_in) do
-      connection = Faraday.new(:url => "#{WordpressConnection.site_url}#{path}") do |faraday|
+      connection = Faraday.new(:url => "#{WordpressRailsConnection.site_url}#{path}") do |faraday|
         faraday.adapter Faraday.default_adapter
         faraday.headers['Content-Type'] = 'application/json'
       end
@@ -19,31 +19,31 @@ module WordpressRailsConnection
 
   def self.posts(page=1, per_page=8)
     path = "/posts?page=#{page.to_s}&number=#{per_page}"
-    WordpressConnection.initialize(path)
+    WordpressRailsConnection.initialize(path)
   end
 
   def self.get_post_by_slug(slug)
     path = "/posts/slug:#{slug}"
-    WordpressConnection.initialize(path)
+    WordpressRailsConnection.initialize(path)
   end
 
   def self.get_post_by_id(post_id)
     path = "/posts/#{post_id}"
-    WordpressConnection.initialize(path)
+    WordpressRailsConnection.initialize(path)
   end
 
   def self.get_previous_post(date, post_id)
     date = DateTime.parse(date).strftime('%F')
     path = "/posts?before=#{date}&order_by=date&order=DESC"
-    posts_response = WordpressConnection.initialize(path)
-    WordpressConnection.get_first_different_post(post_id, posts_response)
+    posts_response = WordpressRailsConnection.initialize(path)
+    WordpressRailsConnection.get_first_different_post(post_id, posts_response)
   end
 
   def self.get_next_post(date, post_id)
     date = DateTime.parse(date).strftime('%F')
     path = "/posts?after=#{date}&order_by=date&order=ASC"
-    posts_response = WordpressConnection.initialize(path)
-    WordpressConnection.get_first_different_post(post_id, posts_response)
+    posts_response = WordpressRailsConnection.initialize(path)
+    WordpressRailsConnection.get_first_different_post(post_id, posts_response)
   end
 
   def self.get_first_different_post(post_id,posts_response)
